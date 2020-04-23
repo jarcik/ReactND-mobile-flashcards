@@ -1,0 +1,17 @@
+{
+  "name": "ReactND-mobile-flashcards",
+  "displayName": "ReactND-mobile-flashcards",
+  "expo": {
+    "name": "ReactND-mobile-flashcards",
+    "slug": "ReactND-mobile-flashcards",
+    "version": "1.0.0",
+    "platforms": [
+      "ios",
+      "android",
+      "web"
+    ],
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
