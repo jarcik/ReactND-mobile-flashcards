@@ -5,6 +5,10 @@ import { connect } from 'react-redux';
 import { AppLoading } from 'expo';
 import { lightPurp } from '../utils/colors';
 import { button, buttonText, container } from '../utils/styles';
+import {
+    clearLocalNotification,
+    setLocalNotification
+  } from '../utils/notifications';
 
 class Quiz extends Component {
 
@@ -41,7 +45,7 @@ class Quiz extends Component {
                 rotateCard: true
             });
         //reset the notification
-        //this.resetNotification()
+        this.resetNotification()
     }
 
     //go back to the deck
@@ -51,7 +55,7 @@ class Quiz extends Component {
         //go back
         this.props.navigation.goBack();
         //reset notifications
-        //this.resetNotification()
+        this.resetNotification()
     }
 
     //user wants to rotate the qustion/answer

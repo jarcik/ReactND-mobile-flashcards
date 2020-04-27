@@ -13,6 +13,9 @@ import Quiz from './components/Quiz';
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { FontAwesome } from '@expo/vector-icons';
+import { purple } from './utils/colors';
+import { setLocalNotification } from './utils/notifications';
 
 //store for redux
 const store = createStore(reducer, {}, middleware);
@@ -20,9 +23,24 @@ const store = createStore(reducer, {}, middleware);
 const Tabs = createBottomTabNavigator();
 
 const TabsScreen = () => (
-  <Tabs.Navigator>
-    <Tabs.Screen name="DeckList" component={DeckList} />
-    <Tabs.Screen name="NewDeck" component={NewDeck} />
+  <Tabs.Navigator 
+    tabBarOptions={{
+      activeTintColor: purple,
+    }}>
+    <Tabs.Screen name="DeckList" component={DeckList}
+      options={{
+            tabBarLabel: 'List',
+            tabBarIcon: ({ color, size }) => (
+              <FontAwesome name="home" color={color} size={size} />
+            ),
+          }} />
+    <Tabs.Screen name="NewDeck" component={NewDeck}
+      options={{
+            tabBarLabel: 'New Deck',
+            tabBarIcon: ({ color, size }) => (
+              <FontAwesome name="plus" color={color} size={size} />
+            ),
+          }} />
   </Tabs.Navigator>
 );
 
@@ -56,6 +74,11 @@ const MainStackScreen = () => (
 
 //App component
 export default class App extends Component {
+  
+  componentDidMount() {
+    setLocalNotification();
+  }
+
   render() {
     return (
       <Provider store={store}>
@@ -68,4 +91,3 @@ export default class App extends Component {
     );
   }
 }
-
